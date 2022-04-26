@@ -7,7 +7,6 @@ from typing import (
     Any,
 )
 from dataclasses import dataclass
-from itertools import chain
 
 # Defining what it means to be ordered and set up T
 # so we can use it to mean an ordered type
@@ -159,35 +158,18 @@ class PriorityQueue(SearchTree[T]):
     def min_val(self) -> T:
         """Return the smallest value."""
         # FIXME
-        tree = self.root
-        assert tree is not None, "Tree can't be empty for min_val"
-        while tree.left is not None:
-            tree = tree.left
-        return tree.value
+        ...
 
     def delete_min(self) -> T:
         # FIXME
         """Delete the smallest value (and return it)."""
-        min_val = self.min_val
-        self.remove(min_val)
-        return min_val
+        ...
 
 
 def pq_sort(x: Iterable[T]) -> Iterator[T]:
     """Sort x using a priority queue."""
     # FIXME
-    # You can do by iteratively extract `delete_min`.
-    # With this implementation, of course, you can just
-    # call st_sort(), since your priority queue is also
-    # a search tree, but I want you to implement a sort
-    # that uses `delete_min``. Such a solution would work
-    # with *any* data structure that provides `delete_min`
-    # and not just this search tree based one.
-    t = PriorityQueue(x)
-    y = []
-    while t:
-        y.append(t.delete_min())
-    return iter(y)
+    ...
 
 
 # Merging
@@ -202,33 +184,7 @@ def general_merge(
     in the same running time.
     """
     # FIXME
-    # In the general case, I can't do much better than building a completely
-    # new priority queue. A little better, but not much. Here's a complete
-    # rebuild. The running time is (len(x)+len(y)) log(len(x)+len(y))
-    return PriorityQueue(chain(iter(x), iter(y)))
-
-
-def general_merge2(
-    x: PriorityQueue[T], y: PriorityQueue[T]
-) -> PriorityQueue[T]:
-    """
-    Merge x and y into a new priority queue.
-
-    You don't have to do this persistently, leaving x and y
-    unchanged, but the implementation above does allow for it
-    in the same running time.
-    """
-    # With a complete rebuild we are inserting the elements from x and y into
-    # an increasingly larger tree, but after inserting all the elements in
-    # x we are just back to the original x structure. If we started from there
-    # we would only spend O(len(y) log(len(x)+len(y))) on inserting y's
-    # elements into x. If we knew the sizes of x and y in constant time--we
-    # could keep track of it in the insertion and deletion operations, we
-    # should always insert the smaller into the larger.
-    tree = x.root
-    for z in iter(y):
-        tree = insert(tree, z)
-    return PriorityQueue(tree=tree)
+    ...
 
 
 def special_merge(
@@ -248,14 +204,4 @@ def special_merge(
     smallest_y = y.min_val
     assert largest_x < smallest_y
     # FIXME
-    # We can pull up the largest value in x (and remove it)
-    # from that tree, then put the largest value in the root
-    # of a new tree with x minus largest on the left and
-    # y on the right. This takes time O(log n) for getting
-    # and removing x's largest value.
-    tree = Node(
-        largest_x,
-        remove(x.root, largest_x),
-        y.root
-    )
-    return PriorityQueue(tree=tree)
+    ...

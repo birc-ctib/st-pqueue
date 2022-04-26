@@ -3,7 +3,7 @@
 from pq import (
     PriorityQueue,
     st_sort, pq_sort,
-    general_merge, general_merge2,
+    general_merge,
     special_merge
 )
 from itertools import permutations
@@ -40,5 +40,4 @@ def test_merge() -> None:
     x = PriorityQueue(data[:5])
     y = PriorityQueue(data[5:])
     assert data == tuple(iter(general_merge(x, y)))
-    assert data == tuple(iter(general_merge2(x, y)))
     assert data == tuple(iter(special_merge(x, y)))
