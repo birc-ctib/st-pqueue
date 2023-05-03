@@ -6,7 +6,7 @@ The difference affects what we can efficiently do with both data structures. We 
 
 The purpose of this exercise is not to argue that one structure is better than another, or even consider when one might be better than the other (the running times above give some hint at when this might be). It is just to familiarise yourself with the operations we want from a priority queue, but implemented with a data structure that you are already familiar with, the binary search tree. We will play with heaps in other exercises.
 
-I have implemented a binary search tree in `src/pq.py`, first as a tree structure
+A binary search tree is implemented in `src/pq.py`, first as a tree structure
 
 ```python
 @dataclass
@@ -33,7 +33,7 @@ class SearchTree(Generic[T]):
 
 The `Tree[T]` trees are implemented as a persistent data structure, so all the functions that operate on them leave the input alone but return new trees that reflect the updates. The `SearchTree` class holds a reference to the root of a tree, and if you use its operations, it will update this reference, so operations on this class will modify the tree instead of returning a new version.
 
-Then, I have written an outline of a priority queue class that uses a search tree as its main structure.
+Then, here is an outline of a priority queue class that uses a search tree as its main structure.
 
 ```python
 class PriorityQueue(SearchTree[T]):
